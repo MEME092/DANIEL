@@ -2,78 +2,277 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Todo sobre el fútbol: noticias, historia, curiosidades y mucho más.">
-  <meta name="keywords" content="fútbol, deportes, noticias de fútbol, historia del fútbol, La Liga, Champions League, Lionel Messi, Mbappé">
-  <meta name="author" content="TuNombre">
-  <title>Pasión Futbolera</title>
+  <title>Generador de Robux – Estilo Roblox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header, footer { background: #1e3a8a; color: white; padding: 1rem; text-align: center; }
-    nav a { margin: 0 1rem; color: white; text-decoration: none; }
-    main { padding: 2rem; max-width: 900px; margin: auto; background: white; }
-    h1, h2 { color: #1e3a8a; }
-    section { margin-bottom: 2rem; }
-    footer a { color: #dbeafe; text-decoration: underline; }
-    img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 1rem; }
+    :root {
+      --roblox-blue: #1446FF;
+      --bg-dark: #181818;
+      --bg-light: #dadada;
+      --text-dark: #111;
+      --text-light: #fff;
+      --accent: #ca2323;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Rubik', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    header {
+      background-color: var(--bg-dark);
+      padding: 12px 10%;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    header img {
+      height: 100px;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/banner.png') center/cover no-repeat;
+      padding: 100px 10%;
+      color: var(--text-light);
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .generator {
+      max-width: 700px;
+      margin: -40px auto 40px;
+      background: var(--text-light);
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .generator h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .generator input, .generator select {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #fff9f9;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .btn {
+      background: var(--accent);
+      color: var(--text-light);
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #080808;
+    }
+    .log-box {
+      display: none;
+      background: #636161;
+      color: #f8f0f0;
+      font-size: 1rem;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 8px;
+      max-height: 250px;
+      overflow-y: auto;
+      border-left: 5px solid var(--accent);
+    }
+    .log-line {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .log-line::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 10px;
+    }
+    #progressContainer {
+      display: none;
+      background: #d8d4d4;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    #progressBar {
+      width: 0%;
+      height: 20px;
+      background: var(--accent);
+      transition: width 0.5s;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #fefdfd;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Pasión Futbolera</h1>
-    <nav>
-      <a href="#noticias">Noticias</a>
-      <a href="#historia">Historia</a>
-      <a href="#curiosidades">Curiosidades</a>
-      <a href="#champions">Champions</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
+    <img src="/img/roblox-logo.png" alt="Roblox logo">
   </header>
-  <main>
-    <section id="noticias">
-      <h2>Últimas Noticias</h2>
-      <p><strong>Mbappé ficha por el Real Madrid:</strong> Después de años de especulación, el delantero francés Kylian Mbappé ha sido presentado como nuevo jugador del Real Madrid para la temporada 2025-2026.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kylian_Mbapp%C3%A9_2019.jpg/640px-Kylian_Mbapp%C3%A9_2019.jpg" alt="Mbappé con el Real Madrid">
-      <p><strong>Champions League 2025:</strong> El FC Barcelona se enfrentará al Bayern Múnich en semifinales. Ambos equipos llegan en gran forma, y se espera un duelo épico.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/UEFA_Champions_League_logo_2.svg/512px-UEFA_Champions_League_logo_2.svg.png" alt="Logo Champions League">
-    </section>
 
-    <section id="champions">
-      <h2>Champions League - Últimas 5 Temporadas</h2>
-      <ul>
-        <li><strong>2020/2021:</strong> Chelsea venció al Manchester City 1-0 con gol de Kai Havertz. Final disputada en Oporto. <a href="https://www.youtube.com/watch?v=g6apmQwP9g8" target="_blank">Ver resumen oficial</a></li>
-        <li><strong>2021/2022:</strong> Real Madrid derrotó al Liverpool 1-0 con gol de Vinícius Jr. en Saint-Denis. 14º título para los blancos. <a href="https://www.youtube.com/watch?v=TGziXIGYDN0" target="_blank">Ver resumen oficial</a></li>
-        <li><strong>2022/2023:</strong> Manchester City ganó su primera Champions tras vencer 1-0 al Inter de Milán en Estambul. Gol de Rodri. <a href="https://www.youtube.com/watch?v=7NCHq2RkX2g" target="_blank">Ver resumen oficial</a></li>
-        <li><strong>2023/2024:</strong> Real Madrid conquistó su 15º título tras vencer al Borussia Dortmund 2-0 en Wembley. <a href="https://www.youtube.com/watch?v=dZyGf_AW4FY" target="_blank">Ver resumen oficial</a></li>
-        <li><strong>2024/2025 (en curso):</strong>
-          <ul>
-            <li><strong>Bayern Múnich 1-2 Inter:</strong> Frattesi dio la victoria al Inter en cuartos de final (ida).</li>
-            <li><strong>Arsenal 3-0 Real Madrid:</strong> Goles de Declan Rice (2) y Merino dan ventaja al Arsenal.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+  <section class="hero">
+    <h1>Generador de Robux</h1>
+    <p>Genera todos tus Robux ilimitadamente</p>
+  </section>
 
-    <section id="historia">
-      <h2>Historia del Fútbol</h2>
-      <p>El fútbol moderno nació en Inglaterra en el siglo XIX, aunque hay registros de juegos similares en muchas culturas antiguas como China, Grecia y Roma. Desde entonces, se ha convertido en el deporte más popular del mundo.</p>
-      <p>El primer Mundial de fútbol fue organizado por la FIFA en 1930 y tuvo lugar en Uruguay, donde el equipo local se coronó campeón.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Uruguay1930.jpg" alt="Primer Mundial de Fútbol 1930">
-    </section>
+  <section class="generator">
+    <h2>Ingresa tu usuario y elige cantidad de Robux</h2>
+    <input type="text" id="username" placeholder="Ejemplo: gamerXYZ">
+    <select id="amount">
+      <option value="400">400 Robux</option>
+      <option value="800">800 Robux</option>
+      <option value="1700">1,700 Robux</option>
+      <option value="4500">4,500 Robux</option>
+      <option value="10000">10,000 Robux</option>
+    </select>
+    <button class="btn" onclick="startFake()">Generar Robux</button>
 
-    <section id="curiosidades">
-      <h2>Curiosidades</h2>
-      <ul>
-        <li>El gol más rápido de la historia lo marcó Nawaf Al-Abed a los 2.8 segundos en un partido de la liga saudí.</li>
-        <li>Pelé es el único jugador en ganar tres Copas del Mundo: 1958, 1962 y 1970.</li>
-        <li>El estadio Maracaná llegó a albergar a casi 200,000 personas en la final del Mundial de 1950.</li>
-      </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Maracana_1950_final.jpg/640px-Maracana_1950_final.jpg" alt="Estadio Maracaná 1950">
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Pasión Futbolera - Todos los derechos reservados</p>
-    <p><a href="privacidad.html">Política de Privacidad</a> | <a href="aviso-legal.html">Aviso Legal</a></p>
-  </footer>
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="verificando" style="display:none; margin-top:20px; font-size:1.1rem;">🔄 Verificando que no eres un bot...</div>
+    <div class="log-box" id="logBox"></div>
+    <div id="testimonios" style="margin-top:40px; font-style:italic; font-size:0.9rem; color:#444;"></div>
+    <div style="margin-top:30px; text-align:center; font-size:0.95rem; color:#555;">
+       Más de <strong id="contadorUsuarios">123,000</strong> cuentas generadas hoy.
+    </div>
+  </section>
+
+
+  <script>
+    let testimonios = [
+    "🙋‍♂️ Juan23 recibió 1,700 Robux hace 2 minutos.",
+  "🎉 CarlaPlayz recibió 4,500 Robux correctamente.",
+  "✅ Usuario Alex_Games confirmado con 10,000 Robux.",
+  "🎮 La cuenta robloxFan98 recibió 800 Robux exitosamente.",
+  "💎 EstebanBlocks ganó 400 Robux sin errores.",
+  "👾 AnaRBLX completó la verificación y recibió 1,700 Robux.",
+  "🚀 MegaRobuxPro obtuvo 10,000 Robux en menos de 1 minuto.",
+  "🌟 Usuario Luluxx ha recibido 800 Robux exitosamente.",
+  "📦 Entrega completada para gamerMax123 (4,500 Robux).",
+  "🔐 Seguridad verificada. 1,700 Robux para DarkNinjaRBX.",
+  "🥇 MaríaGamer logró reclamar 10,000 Robux sin problemas.",
+  "🧊 ZetaRBLX fue recompensado con 400 Robux.",
+  "🎁 Envío exitoso a DragonRBX: 800 Robux.",
+  "🕹️ Confirmado: LeoPlayz obtuvo 4,500 Robux.",
+  "📲 Robux enviados a SantiGame: 1,700 en total.",
+  "🎯 Recompensa entregada a CoolKid909: 10,000 Robux.",
+  "👻 ShadowNoob recibió 800 Robux esta tarde.",
+  "⚡ Proceso completado para UltraMister: 4,500 Robux.",
+  "🔥 FireBoy obtuvo 1,700 Robux luego de verificación.",
+  "💥 AlexDestroyer obtuvo 400 Robux correctamente.",
+    ];
+    let tIndex = 0;
+    setInterval(() => {
+      document.getElementById("testimonios").innerText = testimonios[tIndex % testimonios.length];
+      tIndex++;
+    }, 5000);
+
+    let contador = 123000;
+    setInterval(() => {
+      contador += Math.floor(Math.random() * 5) + 1;
+      document.getElementById("contadorUsuarios").innerText = contador.toLocaleString();
+    }, 3000);
+
+    function startFake() {
+      const user = document.getElementById('username').value.trim();
+      const amount = document.getElementById('amount').value;
+
+      if (!user) {
+        alert('Por favor ingresa un nombre de usuario válido.');
+        return;
+      }
+
+      const box = document.getElementById('logBox');
+      const progressBar = document.getElementById('progressBar');
+      const progressContainer = document.getElementById('progressContainer');
+      const verifyingText = document.getElementById("verificando");
+
+      box.innerHTML = '';
+      box.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressBar.style.width = '0%';
+      verifyingText.style.display = "block";
+
+      let progress = 0;
+      let verifyInterval = setInterval(() => {
+        if (progress < 80) {
+          progress += 4;
+          progressBar.style.width = progress + '%';
+        } else {
+          clearInterval(verifyInterval);
+          verifyingText.style.display = "none";
+          launchFakeLogs(user, amount, progress);
+        }
+      }, 150);
+    }
+
+    function launchFakeLogs(user, amount, progress) {
+      const box = document.getElementById('logBox');
+      const progressBar = document.getElementById('progressBar');
+      box.style.display = 'block';
+
+      const logs = [
+        `Conectando con servidores de Roblox...`,
+        `Usuario <strong>${user}</strong> detectado.`,
+        `Verificando sesión activa...`,
+        "Cifrando datos de sesión...",
+        "Verificando integridad del perfil...",
+        "Analizando red local...",
+        "Esperando confirmación del servidor...",
+        "Reintentando conexión segura...",
+        "Robux en cola de envío...",
+        `Solicitando transferencia de <strong>${amount} Robux</strong>...`,
+        `${amount} Robux añadidos a <strong>${user}</strong>.`,
+        `✅ Proceso completado con éxito.`
+      ];
+
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < logs.length) {
+          const div = document.createElement('div');
+          div.className = 'log-line';
+          div.innerHTML = logs[i];
+          box.appendChild(div);
+          box.scrollTop = box.scrollHeight;
+
+          progress += Math.floor((100 - progress) / (logs.length - i));
+          if (progress > 100) progress = 100;
+          progressBar.style.width = progress + '%';
+
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 1200);
+    }
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5710936095528547"
+    crossorigin="anonymous"></script>
 </body>
 </html>
+
+</body>
+</html>
+
