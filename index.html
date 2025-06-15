@@ -1,277 +1,230 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Generador de Robux – Estilo Roblox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <title>Generador de Robux</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --roblox-blue: #1446FF;
-      --bg-dark: #181818;
-      --bg-light: #dadada;
-      --text-dark: #111;
-      --text-light: #fff;
-      --accent: #ca2323;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Rubik', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
+      background-color: #0d0d0d;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
     }
-    header {
-      background-color: var(--bg-dark);
-      padding: 12px 10%;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-    header img {
-      height: 100px;
-    }
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('WhatsApp Image 2025-06-14 at 11.43.14 AM (1).jpeg') center/cover no-repeat;
-      padding: 100px 10%;
-      color: var(--text-light);
+
+    .header {
+      background-color: #e2231a;
+      padding: 20px;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+
+    .header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: white;
     }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    .generator {
-      max-width: 700px;
-      margin: -40px auto 40px;
-      background: var(--text-light);
-      border-radius: 12px;
-      padding: 30px 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    .generator h2 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-    .generator input, .generator select {
+
+    input, select, button {
       width: 100%;
       padding: 12px;
-      font-size: 1rem;
-      border: 1px solid #fff9f9;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    .btn {
-      background: var(--accent);
-      color: var(--text-light);
-      padding: 12px 24px;
-      font-size: 1rem;
+      margin: 10px 0;
       border: none;
-      border-radius: 8px;
-      margin-top: 20px;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    input, select {
+      background-color: #333;
+      color: white;
+    }
+
+    button {
+      background-color: #e2231a;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.3s;
     }
-    .btn:hover {
-      background: #080808;
+
+    button:hover {
+      background-color: #c31c15;
     }
-    .log-box {
-      display: none;
-      background: #636161;
-      color: #f8f0f0;
-      font-size: 1rem;
-      padding: 20px;
-      margin-top: 25px;
-      border-radius: 8px;
-      max-height: 250px;
-      overflow-y: auto;
-      border-left: 5px solid var(--accent);
-    }
-    .log-line {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-    }
-    .log-line::before {
-      content: '';
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-right: 10px;
-    }
-    #progressContainer {
-      display: none;
-      background: #d8d4d4;
-      border-radius: 8px;
+
+    .progress-bar {
+      width: 100%;
+      background-color: #333;
+      border-radius: 10px;
       overflow: hidden;
       margin-top: 20px;
+      display: none;
     }
-    #progressBar {
-      width: 0%;
+
+    .progress {
       height: 20px;
-      background: var(--accent);
-      transition: width 0.5s;
+      background-color: #00ff00;
+      width: 0%;
     }
-    footer {
+
+    .status {
+      margin-top: 20px;
       text-align: center;
+      font-weight: bold;
+    }
+
+    .ads {
+      margin-top: 40px;
+      padding: 15px;
+      background-color: #111;
+      text-align: center;
+      border-top: 2px solid #e2231a;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      transform: translate(-50%, -50%);
+      background-color: #222;
       padding: 20px;
-      color: #fefdfd;
-      font-size: 0.9rem;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff00;
+      z-index: 9999;
+    }
+
+    .popup button {
+      background-color: #00ff00;
+      color: black;
+      font-weight: bold;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9998;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="WhatsApp Image 2025-06-14 at 11.43.14 AM.jpeg" alt="Roblox logo">
-  </header>
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+  <audio id="loadingSound" src="https://www.soundjay.com/misc/sounds/loading-1.mp3" preload="auto" loop></audio>
 
-  <section class="hero">
-    <h1>Generador de Robux</h1>
-    <p>Genera todos tus Robux ilimitadamente</p>
-  </section>
+  <div class="header">
+    <h1>ROBLOX GENERADOR</h1>
+  </div>
 
-  <section class="generator">
-    <h2>Ingresa tu usuario y elige cantidad de Robux</h2>
-    <input type="text" id="username" placeholder="Ejemplo: gamerXYZ">
+  <!-- Espacio publicitario debajo del encabezado -->
+  <div class="ads">
+    <p>📢 Espacio publicitario superior</p>
+  </div>
+
+  <div class="container">
+    <h2>🔒 Ingresa tu usuario</h2>
+    <input type="text" id="username" placeholder="Usuario Roblox">
     <select id="amount">
       <option value="400">400 Robux</option>
       <option value="800">800 Robux</option>
-      <option value="1700">1,700 Robux</option>
-      <option value="4500">4,500 Robux</option>
-      <option value="10000">10,000 Robux</option>
+      <option value="1600">1600 Robux</option>
+      <option value="5000">5000 Robux</option>
     </select>
-    <button class="btn" onclick="startFake()">Generar Robux</button>
+    <button onclick="generate()">Generar Robux</button>
 
-    <div id="progressContainer">
-      <div id="progressBar"></div>
+    <!-- Espacio publicitario dentro del formulario -->
+    <div class="ads">
+      <p>🎯 Espacio publicitario en medio</p>
     </div>
 
-    <div id="verificando" style="display:none; margin-top:20px; font-size:1.1rem;">🔄 Verificando que no eres un bot...</div>
-    <div class="log-box" id="logBox"></div>
-    <div id="testimonios" style="margin-top:40px; font-style:italic; font-size:0.9rem; color:#444;"></div>
-    <div style="margin-top:30px; text-align:center; font-size:0.95rem; color:#555;">
-       Más de <strong id="contadorUsuarios">123,000</strong> cuentas generadas hoy.
+    <div class="progress-bar" id="progress-bar">
+      <div class="progress" id="progress"></div>
     </div>
-  </section>
 
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- Espacio publicitario existente -->
+  <div class="ads">
+    <p>📢 Espacio publicitario</p>
+  </div>
+
+  <!-- Espacio publicitario al final del body -->
+  <div class="ads">
+    <p>🔥 Espacio publicitario inferior</p>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <h3>⚠ Verificación humana requerida</h3>
+    <p>Completa una oferta para finalizar la entrega de tus Robux.</p>
+    <button onclick="closePopup()">OK, ENTENDIDO</button>
+  </div>
 
   <script>
-    let testimonios = [
-    "🙋‍♂️ Juan23 recibió 1,700 Robux hace 2 minutos.",
-  "🎉 CarlaPlayz recibió 4,500 Robux correctamente.",
-  "✅ Usuario Alex_Games confirmado con 10,000 Robux.",
-  "🎮 La cuenta robloxFan98 recibió 800 Robux exitosamente.",
-  "💎 EstebanBlocks ganó 400 Robux sin errores.",
-  "👾 AnaRBLX completó la verificación y recibió 1,700 Robux.",
-  "🚀 MegaRobuxPro obtuvo 10,000 Robux en menos de 1 minuto.",
-  "🌟 Usuario Luluxx ha recibido 800 Robux exitosamente.",
-  "📦 Entrega completada para gamerMax123 (4,500 Robux).",
-  "🔐 Seguridad verificada. 1,700 Robux para DarkNinjaRBX.",
-  "🥇 MaríaGamer logró reclamar 10,000 Robux sin problemas.",
-  "🧊 ZetaRBLX fue recompensado con 400 Robux.",
-  "🎁 Envío exitoso a DragonRBX: 800 Robux.",
-  "🕹️ Confirmado: LeoPlayz obtuvo 4,500 Robux.",
-  "📲 Robux enviados a SantiGame: 1,700 en total.",
-  "🎯 Recompensa entregada a CoolKid909: 10,000 Robux.",
-  "👻 ShadowNoob recibió 800 Robux esta tarde.",
-  "⚡ Proceso completado para UltraMister: 4,500 Robux.",
-  "🔥 FireBoy obtuvo 1,700 Robux luego de verificación.",
-  "💥 AlexDestroyer obtuvo 400 Robux correctamente.",
-    ];
-    let tIndex = 0;
-    setInterval(() => {
-      document.getElementById("testimonios").innerText = testimonios[tIndex % testimonios.length];
-      tIndex++;
-    }, 5000);
+    const clickSound = document.getElementById('clickSound');
+    const loadingSound = document.getElementById('loadingSound');
 
-    let contador = 123000;
-    setInterval(() => {
-      contador += Math.floor(Math.random() * 5) + 1;
-      document.getElementById("contadorUsuarios").innerText = contador.toLocaleString();
-    }, 3000);
+    function playClick() {
+      clickSound.play();
+    }
 
-    function startFake() {
-      const user = document.getElementById('username').value.trim();
-      const amount = document.getElementById('amount').value;
+    function generate() {
+      playClick();
+      const user = document.getElementById("username").value.trim();
+      const amount = document.getElementById("amount").value;
+      const status = document.getElementById("status");
+      const progressBar = document.getElementById("progress-bar");
+      const progress = document.getElementById("progress");
 
       if (!user) {
-        alert('Por favor ingresa un nombre de usuario válido.');
+        status.innerHTML = "⚠️ Ingresa tu nombre de usuario.";
         return;
       }
 
-      const box = document.getElementById('logBox');
-      const progressBar = document.getElementById('progressBar');
-      const progressContainer = document.getElementById('progressContainer');
-      const verifyingText = document.getElementById("verificando");
+      status.innerHTML = "🔄 Conectando con la cuenta de Roblox...";
+      progressBar.style.display = "block";
+      progress.style.width = "0%";
+      loadingSound.play();
 
-      box.innerHTML = '';
-      box.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressBar.style.width = '0%';
-      verifyingText.style.display = "block";
-
-      let progress = 0;
-      let verifyInterval = setInterval(() => {
-        if (progress < 80) {
-          progress += 4;
-          progressBar.style.width = progress + '%';
-        } else {
-          clearInterval(verifyInterval);
-          verifyingText.style.display = "none";
-          launchFakeLogs(user, amount, progress);
+      let width = 0;
+      const interval = setInterval(() => {
+        width += 2;
+        progress.style.width = width + "%";
+        if (width >= 100) {
+          clearInterval(interval);
+          loadingSound.pause();
+          status.innerHTML = `✅ ${amount} Robux generados y listos para ${user}`;
+          showPopup();
         }
-      }, 150);
+      }, 100);
     }
 
-    function launchFakeLogs(user, amount, progress) {
-      const box = document.getElementById('logBox');
-      const progressBar = document.getElementById('progressBar');
-      box.style.display = 'block';
+    function showPopup() {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("popup").style.display = "block";
+    }
 
-      const logs = [
-        `Conectando con servidores de Roblox...`,
-        `Usuario <strong>${user}</strong> detectado.`,
-        `Verificando sesión activa...`,
-        "Cifrando datos de sesión...",
-        "Verificando integridad del perfil...",
-        "Analizando red local...",
-        "Esperando confirmación del servidor...",
-        "Reintentando conexión segura...",
-        "Robux en cola de envío...",
-        `Solicitando transferencia de <strong>${amount} Robux</strong>...`,
-        `${amount} Robux añadidos a <strong>${user}</strong>.`,
-        `✅ Proceso completado con éxito.`
-      ];
-
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < logs.length) {
-          const div = document.createElement('div');
-          div.className = 'log-line';
-          div.innerHTML = logs[i];
-          box.appendChild(div);
-          box.scrollTop = box.scrollHeight;
-
-          progress += Math.floor((100 - progress) / (logs.length - i));
-          if (progress > 100) progress = 100;
-          progressBar.style.width = progress + '%';
-
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 1200);
+    function closePopup() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("status").innerHTML = "🚫 Aún no se ha verificado. Intenta de nuevo.";
     }
   </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5710936095528547"
-    crossorigin="anonymous"></script>
-</body>
-</html>
 
 </body>
 </html>
