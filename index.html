@@ -267,12 +267,24 @@
       document.getElementById("overlay").style.display = "block";
       document.getElementById("popup").style.display = "block";
     }
+function closePopup() {
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById('popup');
 
-    function closePopup() {
-      document.getElementById("overlay").style.display = "none";
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("status").innerHTML = "🚫 Aún no se ha verificado. Intenta de nuevo.";
-    }
+  // Cierra la ventana emergente con animación
+  popup.classList.remove('show');
+  overlay.classList.remove('show');
+
+  // Espera 300ms y redirige
+  setTimeout(() => {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+
+    // Redirección a la página externa
+    window.open("https://streamfocus.lat/", "_blank");
+  }, 300);
+}
+
   </script>
 
 </body>
